@@ -1,16 +1,6 @@
-## 🛍️ Simple ecommerce cart application built with React & Redux
-<p align="center">
-  <img src="https://img.shields.io/badge/React-16.6.1-blue.svg">
-  <img src="https://img.shields.io/badge/Redux-3.7.2-blue.svg?colorB=764abc">
-  <img src="https://img.shields.io/badge/Nodejs-6.10.2-blue.svg?colorB=90c53f">
-  <img src="https://img.shields.io/badge/Express-4.16.4-blue.svg?colorB=47535e">
-  <br/>
-</p>
 
-## Basic Overview  [Live Demo](https://react-shopping-cart-67954.firebaseapp.com/)
 
-This simple shopping cart prototype shows how React components and Redux can be used to build a
-friendly user experience with instant visual updates and scaleable code in ecommerce applications. 
+This simple shopping cart prototype shows how React components and Redux. 
 
 
 #### Features
@@ -78,11 +68,7 @@ The MIT License (MIT). Please see License File for more information.
 <br/>
 <br/>
 
-<p align="center"><img src="https://avatars2.githubusercontent.com/u/20846473?s=70&v=4" width="35" height="35"/></p>
 <p align="center">
-<sub>A little project by <a href="http://www.jeffersonribeiro.com/">Jefferson Ribeiro</a></sub>
+<sub>A little project by <a href="http://www.jeffersonribeiro.com/">Thilaga</a></sub>
 </p>
 
-files have to remove:
-
-corner.js

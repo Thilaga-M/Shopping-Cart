@@ -2,7 +2,10 @@
 body {
   margin: 0;
   color: #1b1a20;
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Roboto', sans-serif !important; 
+  background-color: #f2f3f8;
+  font-size: 14px !important;
+}
 
 main {
   padding: 20px 2%;
@@ -50,7 +53,7 @@ footer {
       margin-bottom: 8px;
       display: inline-block; }
   .filters .title {
-    margin-top: 2px;
+    margin-top: 60px;
     margin-bottom: 20px; }
   .filters-available-size {
     display: inline-block;
@@ -103,7 +106,10 @@ footer {
 .shelf-container {
   width: 85%;
   float: left;
-  min-height: 600px; }
+  min-height: 600px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+  padding: 20px; }
   .shelf-container-header {
     margin-bottom: 10px; }
     .shelf-container-header .products-found {
@@ -344,7 +350,19 @@ footer {
   .shelf-container {
     width: 80%; }
     .shelf-container .shelf-item {
-      width: 33.33%; } }
+      width: 33.33%; } 
+      .bitcot-logo {
+       margin: -40px 0px 0px -18px!important;
+       width: 100%!important;
+      }
+    }
+
+
+@media only screen and (max-width: 1284px) {
+.bitcot-logo{
+display: none;
+  }
+}
 
 @media only screen and (max-width: 640px) {
   .filters {
@@ -367,7 +385,11 @@ footer {
       z-index: 2;
       background-color: #1b1a20; }
     .float-cart__header {
-      padding: 25px 0; } }
+      padding: 25px 0; } 
+      .filters .title {
+    margin-top: -65px;
+  }
+    }
 
 @media only screen and (max-width: 460px) {
   main {
@@ -424,3 +446,69 @@ footer {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+    @media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+}
+.bitcot-logo {
+    float: left;
+    width: 126%;
+    margin: -40px 0px 0px -67px;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
+.container-fluid .logo .navbar-brand{
+    margin-left: 0px!important;
+    float: left!important;
+}
+@media (min-width: 768px)
+{
+ .navbar>.container-fluid .navbar-brand {
+    margin-left: -15px;
+} 
+}
+.navbar-brand {
+    height: 60px;
+    padding: 0;
+    overflow: inherit;
+}
+.navbar-brand, .navbar-brand:hover, .navbar-brand:active, .navbar-brand:focus {
+    position: relative;
+    line-height: 54px;
+    font-weight: 600;
+    color: #1b1a20;
+    font-variant: small-caps;
+    letter-spacing: .02em;
+    transition: font-size .2s ease-out;
+
+}
+.navbar-brand>img {
+    display: inline-block;
+    vertical-align: middle;
+    border: 0;
+}
+.logo-title {
+ padding: 15px !important;
+ margin: -12px 0;
+}
+.navbar-brand{
+  display: flex !important;
+}
+
+.navbar .logo .logo-title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600 !important;
+    margin: 0 0 0 10px;
+
+
+}

@@ -46,7 +46,20 @@ class Filter extends Component {
 
   render() {
     return (
+
       <div className="filters">
+        
+
+        <div className="bitcot-logo w3-container w3-hide-small w3-white">
+          <a  className="navbar-brand site-logo">
+            <img href="https://www.bitcot.com" src="https://www.bitcot.com/wp-content/themes/bitcot/images/brand-logo.png" 
+            alt="Top Websites and Mobile App Developer, Best Mobile App Development Companies in San Diego, CA" 
+            className="lazyloading" />
+            <h4 className="logo-title">WEB &amp; MOBILE APP CREATORS</h4>
+          </a>
+        </div>
+
+        
         <h4 className="title">Sizes:</h4>
         {this.createCheckboxes()}
       </div>
