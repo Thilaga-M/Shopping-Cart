@@ -45,8 +45,8 @@ export const fetchProducts = (filters, sortBy, callback) => dispatch => {
       });
 
     })
-    // .catch(err => {
-    //   console.log(err);
-    //   throw new Error('Could not fetch products. Try again later.');
-    // });
+    .catch(err => {
+      console.log(err);
+      throw new Error('Could not fetch products. Try again later.');
+    });
 }

@@ -1,3 +1,6 @@
+// Login Page
+export const FETCH_AUTHENTICATIONS = 'FETCH_AUTHENTICATIONS';
+
 // Product Page
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 // Float Cart

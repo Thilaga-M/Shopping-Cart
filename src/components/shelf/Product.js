@@ -1,16 +1,114 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import ReactModalLogin from 'react-modal-login';
- 
 
+import ReactSignupLoginComponent from 'react-signup-login-component';
+import Popup from "reactjs-popup";
 
 
 import Thumb from '../Thumb';
 import util from '../../util';
 
 
-const Product = (props) => {
-  const product = props.product;
+class Product extends React.Component {
+     state = {
+      error_status:false,
+      valid_status:false,
+      emailid:'',
+      username:'',
+      loggedIn:0,
+      auth_details: []
+      
+    };
+
+componentDidMount(){
+const that = this;
+fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(function(json){
+    that.setState({ auth_details: json});
+  });     
+}
+
+
+handleChangeEmail = (e) =>{ 
+    this.setState({
+      emailid: e.target.value
+    });
+  }
+handleChangeUsername = (e) =>{ 
+    this.setState({
+      username: e.target.value
+    });
+  }
+
+
+
+
+onsubmit(){
+    const auth = this.state.auth_details;
+    const username = this.state.username;
+    const email = this.state.emailid;
+    
+      var foundUsername = auth.some(function (el) {
+      return el.username.toUpperCase() === username.toUpperCase();
+        });
+        var foundEmail = auth.some(function (el) {
+          return el.email.toUpperCase() === email.toUpperCase();
+        });
+
+      if (foundUsername && foundEmail) 
+      { 
+       this.setState({loggedIn:1});
+       
+       const product = this.props.product;
+       this.props.addProduct(product);
+        alert("Successfully Logged in....Let's Enjoy the shopping Cart!...");
+
+      }else
+      {
+        alert("Please Enter the Valid Authentications!...");
+      }
+  
+   
+   
+       }
+  
+render(){
+  console.log("status",this.state.loggedIn)
+  let {
+      emailid,
+      username
+         } = this.state;
+
+  let loginButton;
+  debugger
+  var isLoggedIn = this.state.loggedIn;
+   if (isLoggedIn == 1) {
+      loginButton = <button className="shelf-item__buy-btn btn-padding" onClick={() => this.props.addProduct(product)} >Add to Cart</button>;
+    } else {
+      loginButton = <Popup trigger={<div  className="shelf-item__buy-btn" >Add to cart</div>} position="right center">
+      <div>
+         <div className="RML-login-modal-form">
+            <div className="RML-form-group">
+               <label htmlFor="username">Username</label>
+               <input type="username" className="RML-form-control" id="username" name="username" placeholder="Username"
+                  onChange={this.handleChangeUsername.bind(this)} 
+                  value={this.state.username}/>
+            </div>
+            <div className="RML-form-group">
+               <label htmlFor="email">Email</label>
+               <input type="email" className="RML-form-control" id="email" name="email" placeholder="Email" value={this.state.emailid}
+                  onChange={this.handleChangeEmail.bind(this)}/>
+            </div>
+            <button className="shelf-item__buy-btn btn-padding" id="submit" onClick={this.onsubmit.bind(this)} >Sign in To Add Cart</button>
+            
+            <div className="clearfix"></div>
+         </div>
+      </div>
+      </Popup>;
+    }
+  const product = this.props.product;
 
   product.quantity = 1;
 
@@ -18,59 +116,6 @@ const Product = (props) => {
   
   let productInstallment;
 
-
- const constructor=(props) =>{
- }
-    state = {
-      showModal: false,
-      loading: false,
-      error: null
-    };
- 
-
- 
- const openModal=()=> {
-    this.setState({
-      showModal: true,
-    });
-  }
- 
- const closeModal=()=> {
-    this.setState({
-      showModal: false,
-      error: null
-    });
-  }
-  
- const onLoginSuccess=(method, response)=> {
-    console.log('logged successfully with ' + method);
-  }
- 
- const onLoginFail=(method, response)=> {
-    console.log('logging failed with ' + method);
-    this.setState({
-      error: response
-    })
-  }
- 
- const startLoading=()=> {
-    this.setState({
-      loading: true
-    })
-  }
- 
- const finishLoading=()=> {
-    this.setState({
-      loading: false
-    })
-  }
- 
- const afterTabsChange=()=> {
-    this.setState({
-      error: null
-    });
-  }
-  
   if(!!product.installments) {
     const installmentPrice = (product.price / product.installments);
 
@@ -82,57 +127,37 @@ const Product = (props) => {
   }
 
   return (
-    <div className="shelf-item" data-sku={product.sku}>
-      {product.isFreeShipping && 
-        <div ></div>
-      }
-      <Thumb
-        classes="shelf-item__thumb"
-        src={require(`../../static/products/${product.sku}_1.jpg`)}
-        alt={product.title}
+
+<div className="shelf-item" data-sku={product.sku}>
+   {product.isFreeShipping && 
+   <div ></div>
+   }
+   <Thumb
+      classes="shelf-item__thumb"
+      src={require(`../../static/products/${product.sku}_1.jpg`)}
+      alt={product.title}
       />
-      <p className="shelf-item__title">{product.title}</p>
-      <div className="shelf-item__price">
-        <div className="val"><small>{product.currencyFormat}</small>
-          <b>
-            {formattedPrice.substr(0, formattedPrice.length - 3)}
-          </b>
-          <span>
-            {formattedPrice.substr(formattedPrice.length - 3, 3)}
-          </span>
-        </div>
-        {productInstallment}
+   <p className="shelf-item__title">{product.title}</p>
+   <div className="shelf-item__price">
+      <div className="val"><small>{product.currencyFormat}</small>
+         <b>
+         {formattedPrice.substr(0, formattedPrice.length - 3)}
+         </b>
+         <span>
+         {formattedPrice.substr(formattedPrice.length - 3, 3)}
+         </span>
       </div>
-
-
-<div>
-  <button
-    onClick={openModal}
-  >
-    Open Modal
-  </button>
-
-  <ReactModalLogin
-    visible={this.state.showModal}
-    onCloseModal={closeModal}
-    loading={this.state.loading}
-    error={this.state.error}
-    tabs={{
-      afterChange:afterTabsChange
-    }}
-    loginError={{
-      label: "Couldn't sign in, please try again."
-    }}
-    registerError={{
-      label: "Couldn't sign up, please try again."
-    }}
-    startLoading={startLoading}
-    finishLoading={finishLoading}
-  />
+      {productInstallment}
+   </div>
+   <div>
+      
+      <div value={isLoggedIn}>{loginButton}</div>
+   </div>
 </div>
-    <div onClick={() => props.addProduct(product)} className="shelf-item__buy-btn">Add to cart</div>
-    </div>
-  );
+);
+}
+
+ 
 }
 
 
@@ -142,3 +167,7 @@ Product.propTypes = {
 };
 
 export default Product;
+
+
+
+
