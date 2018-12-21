@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import ReactModalLogin from 'react-modal-login';
-
-import ReactSignupLoginComponent from 'react-signup-login-component';
 import Popup from "reactjs-popup";
 
 
